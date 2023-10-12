@@ -1,6 +1,6 @@
 import express from "express";
-import indexrouter from "./v1/routes/index.route"
-import carrers from './v1/routes/careers.route'
+import indexrouter from "./v1/routes/index.routes"
+import carrers from './v1/routes/careers.routes'
 import cors from "cors";
 
 const app = express();
