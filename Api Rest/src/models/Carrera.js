@@ -1,7 +1,12 @@
 import { Schema, model } from "mongoose";
 
 const CarreraSchema = new Schema({
-    name:{
+    name: {
+        type: String,
+        unique: true,
+        require: true
+    },
+    faculty: {
         type: String,
         require: true
     },
@@ -14,6 +19,8 @@ const CarreraSchema = new Schema({
         type: Number,
         default: 0
     }
+}, {
+    timestamps: true
 })
 
 export default model('Carrera', CarreraSchema)
