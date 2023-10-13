@@ -1,5 +1,4 @@
 import { Router } from "express"
-import { gettingCarreers } from "../../controllers/carreersController";
 
 const router = Router()
 

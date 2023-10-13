@@ -1,6 +1,7 @@
 import express from "express";
-import indexrouter from "./v1/routes/index.routes"
-import carrers from './v1/routes/careers.routes'
+import indexrouter from "./routes/index.routes"
+import carrersRouter from './routes/careers.routes'
+import authRouter from './routes/auth.routes'
 import cors from "cors";
 
 const app = express();
@@ -10,6 +11,7 @@ app.use(cors())
 app.use(express.json())
 // Rutas
 app.use(indexrouter);
-app.use('/api/v1', carrers);
+app.use('/api/v1', carrersRouter);
+app.use('/api/auth', authRouter);
 
 export default app;
