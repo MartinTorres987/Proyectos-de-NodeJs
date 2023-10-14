@@ -1,7 +1,8 @@
 import { Router } from "express";
-import { login, register } from "../controllers/authController";
+import { login, register, infoUser } from "../controllers/authController";
 import { body } from "express-validator";
 import { validationRequest } from "../middlewares/validationRequest";
+import { requireToken } from "../middlewares/requiereToken";
 
 const router = Router();
 
@@ -16,7 +17,10 @@ router.post('/login',
 
 router.post('/register', 
     [
+        body('name', 'Debes agregar un nombre y un apellido').notEmpty().isString(),
         body('email', "El Correo es inválido").trim().isEmail().normalizeEmail(),
+        body('code', 'Has olvidado tu código').notEmpty(),
+        body('code', 'El código es inválido').isNumeric().isLength({ min: 8}),
         body('password', "Minimo 6 caraceter").trim()
             .isLength({ min: 6 }),
         body('password', "La contraseña es incorrecta")
@@ -30,5 +34,7 @@ router.post('/register',
     validationRequest, 
     register
 );
+
+router.get("/protected", requireToken, infoUser)
 
 export default router;
